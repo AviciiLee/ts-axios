@@ -12,18 +12,19 @@ function encode(val: string): string {
 }
 
 export function buildURL(url: string, params?: any): string {
+  // 如果不是params不传就不需要处理url
   if (!params) {
     return url
   }
+
   const parts: string[] = []
 
   Object.keys(params).forEach(key => {
+    // value值没有的话直接去掉
     const val = params[key]
-
     if (val === null || typeof val === 'undefined') {
       return
     }
-
     let values = []
     if (Array.isArray(val)) {
       values = val
